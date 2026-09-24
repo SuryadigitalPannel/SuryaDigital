@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surya Digital Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E2432;
+    --gold: #E8A33D;
+    --cream: #FAF7F1;
+    --teal: #12706B;
+    --grey: #64748B;
+    --line: #E4DFD3;
+    --card: #FFFFFF;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.55;
+    padding-bottom: 64px;
+  }
+  h1, h2, h3, .brand { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .topbar .row { display:flex; align-items:center; justify-content:space-between; padding: 16px 20px; }
+  .brand { font-size: 18px; font-weight: 700; }
+  .brand span { color: var(--gold); }
+  .support-btn {
+    font-size: 13px; color: var(--cream); background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2); padding: 7px 13px; border-radius: 20px;
+    text-decoration:none; cursor:pointer;
+  }
+
+  .tabs { display:flex; gap: 4px; padding: 0 12px 12px; overflow-x:auto; }
+  .tab {
+    flex: 0 0 auto;
+    background: transparent; border: none; color: #B9C4CA;
+    font-family:'Inter',sans-serif; font-size: 14px; font-weight: 600;
+    padding: 8px 16px; border-radius: 20px; cursor: pointer;
+  }
+  .tab.active { background: var(--gold); color: var(--ink); }
+
+  .panel { display: none; padding: 32px 0 48px; }
+  .panel.active { display: block; }
+
+  .section-head { max-width: 560px; margin-bottom: 28px; }
+  .section-head h2 { font-size: 26px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .section-head p { color: var(--grey); margin: 0; font-size: 15px; }
+
+  .hero-mini {
+    display:flex; align-items:center; gap:18px; margin-bottom: 28px;
+    background: var(--ink); color: var(--cream); border-radius: 14px; padding: 26px;
+  }
+  .hero-mini .sun {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 32%, var(--gold), #a9691f 75%);
+    flex-shrink: 0;
+  }
+  .hero-mini h1 { font-size: 21px; margin: 0 0 4px; }
+  .hero-mini p { margin: 0; font-size: 14px; color: #C7D2D9; }
+
+  .info-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom: 28px; }
+  .info-card { background: var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; }
+  .info-card h4 { font-size: 14px; margin: 0 0 8px; color: var(--teal); }
+  .info-card p { font-size: 14.5px; margin: 0; color: var(--grey); }
+
+  .contact-row { display:flex; flex-wrap:wrap; gap:12px; }
+  .contact-row a { text-decoration:none; }
+
+  .products { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 16px; }
+  .product { background: var(--card); border:1px solid var(--line); border-radius:10px; padding:22px; }
+  .product .tag { display:inline-block; font-size:12px; color:var(--teal); background:rgba(18,112,107,0.08); padding:4px 10px; border-radius:4px; margin-bottom:12px; }
+  .product h3 { font-size: 16.5px; margin: 0 0 8px; }
+  .product .price { font-size: 22px; font-weight: 700; margin: 8px 0 6px; }
+  .product .commission { font-size: 13.5px; color: var(--grey); }
+  .product .commission strong { color: var(--ink); }
+  .product .buy { display:block; margin-top:14px; text-align:center; padding:9px; border-radius:6px; background:var(--ink); color:var(--cream); font-size:13.5px; font-weight:600; text-decoration:none; }
+
+  .referral-card { background: var(--ink); color: var(--cream); border-radius: 14px; padding: 32px; margin-bottom: 24px; }
+  .referral-card h2 { color: var(--cream); font-size: 23px; margin: 0 0 10px; }
+  .referral-card p { color: #C7D2D9; max-width: 520px; font-size: 14.5px; margin: 0 0 20px; }
+  .stat { display:inline-flex; align-items:baseline; gap:8px; background: rgba(232,163,61,0.14); border:1px solid rgba(232,163,61,0.35); padding:9px 16px; border-radius:8px; margin-bottom:18px; }
+  .stat b { font-size: 24px; color: var(--gold); font-family:'Space Grotesk',sans-serif; }
+  .stat span { font-size: 13px; color: #C7D2D9; }
+  .link-box { display:flex; gap:8px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); padding: 10px 12px; border-radius:8px; font-size:13.5px; color:#C7D2D9; align-items:center; }
+  .link-box code { flex:1; overflow-x:auto; white-space:nowrap; color: var(--cream); }
+  .copy-btn { background: var(--gold); color: var(--ink); border:none; padding:6px 12px; border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; flex-shrink:0; }
+
+  .wallet-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 14px; margin-bottom: 26px; }
+  .wallet-card { background: var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; }
+  .wallet-card .label { font-size: 12.5px; color: var(--grey); margin-bottom:8px; }
+  .wallet-card .value { font-size: 24px; font-weight: 700; font-family:'Space Grotesk',sans-serif; }
+  .wallet-card .value.gold { color: var(--gold); }
+  .wallet-actions { display:flex; gap:12px; margin-bottom: 30px; flex-wrap:wrap; }
+  .btn { background: var(--ink); color: var(--cream); border:none; padding:12px 22px; border-radius:6px; font-weight:600; font-size:14.5px; cursor:pointer; }
+  .btn-outline { background:transparent; border:1px solid var(--ink); color:var(--ink); padding:12px 22px; border-radius:6px; font-weight:600; font-size:14.5px; cursor:pointer; }
+
+  table { width:100%; border-collapse: collapse; background: var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size: 14px; }
+  th, td { text-align:left; padding: 12px 16px; border-bottom:1px solid var(--line); }
+  th { font-size: 12.5px; color: var(--grey); font-weight:600; }
+  tr:last-child td { border-bottom: none; }
+  .status { font-size: 12px; padding:3px 9px; border-radius: 20px; font-weight:600; }
+  .status.done { background: rgba(18,112,107,0.12); color: var(--teal); }
+  .status.pending { background: rgba(232,163,61,0.18); color: #8a5c17; }
+
+  .disclaimer { background:#FFF7EA; border:1px solid #EAD9B0; border-radius:10px; padding:16px 20px; font-size:13px; color:#5C4A1F; margin-top: 28px; }
+  .disclaimer strong { display:block; margin-bottom:4px; color: var(--ink); }
+
+  .overlay { display:none; position:fixed; inset:0; background: rgba(14,36,50,0.5); z-index: 50; align-items:center; justify-content:center; padding: 20px; }
+  .overlay.open { display:flex; }
+  .modal { background: var(--card); border-radius: 14px; padding: 26px; max-width: 380px; width:100%; }
+  .modal h3 { margin:0 0 6px; font-size:18px; }
+  .modal p { font-size:13.5px; color:var(--grey); margin: 0 0 18px; }
+  .modal input, .modal textarea { width:100%; border:1px solid var(--line); border-radius:6px; padding:10px 12px; font-family:'Inter',sans-serif; font-size:14px; margin-bottom:12px; }
+  .modal-actions { display:flex; gap:10px; justify-content:flex-end; }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --cream:#14181B; --ink:#F2EFE8; --card:#1D2226; --line:#2C3236; --grey:#9AA3A8;
+    }
+    .btn { background: var(--gold); color:#14181B; }
+    .btn-outline { border-color: var(--ink); }
+    .disclaimer { background:#241E12; border-color:#4A3B1B; color:#E4D6AE; }
+    .disclaimer strong { color:#F2EFE8; }
+  }
+  :root[data-theme="dark"] { --cream:#14181B; --ink:#F2EFE8; --card:#1D2226; --line:#2C3236; --grey:#9AA3A8; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="row">
+    <div class="brand">Surya <span>Digital Store</span></div>
+    <button class="support-btn" onclick="openSupport()">सहायता</button>
+  </div>
+  <div class="wrap tabs">
+    <button class="tab active" data-panel="company">Company</button>
+    <button class="tab" data-panel="products">Products</button>
+    <button class="tab" data-panel="referral">Referral</button>
+    <button class="tab" data-panel="wallet">Wallet</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="panel active" id="company">
+    <div class="hero-mini">
+      <div class="sun"></div>
+      <div>
+        <h1>Surya Digital Store</h1>
+        <p>Solar-related digital products बेचने और उनसे कमाने का एक सीधा platform।</p>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>हम क्या करते हैं</h4>
+        <p>हम digital guides, toolkits और resources बेचते हैं जो solar energy अपनाने में मदद करते हैं। हर seller को हर completed sale पर तय कमीशन मिलता है।</p>
+      </div>
+      <div class="info-card">
+        <h4>हमारा तरीका</h4>
+        <p>कोई guaranteed daily income नहीं, कोई recruitment ज़रूरी नहीं। कमीशन हमेशा किसी असली sale से जुड़ा होता है — पारदर्शी और सीधा।</p>
+      </div>
+      <div class="info-card">
+        <h4>Payments</h4>
+        <p>Earnings आपके wallet में जुड़ती हैं और आप उन्हें अपने बैंक account में withdraw कर सकते हैं (न्यूनतम withdrawal seller policy अनुसार)।</p>
+      </div>
+      <div class="info-card">
+        <h4>संपर्क</h4>
+        <p>कोई सवाल हो तो नीचे दिए contact options से हमसे जुड़ें — team आपकी मदद के लिए तैयार है।</p>
+      </div>
+    </div>
+    <div class="contact-row">
+      <a class="btn" href="mailto:support@example.com">✉️ Email Support</a>
+      <a class="btn-outline" href="https://wa.me/910000000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+    <div class="disclaimer">
+      <strong>ध्यान दें</strong>
+      यह placeholder company information है — launch से पहले इसे अपनी real details (नाम, email, phone, address) से बदलें। Tata Solar का नाम/logo इस्तेमाल करने से पहले उनकी लिखित अनुमति ज़रूर लें।
+    </div>
+  </div>
+
+  <div class="panel" id="products">
+    <div class="section-head">
+      <h2>प्रोडक्ट्स</h2>
+      <p>हर प्रोडक्ट पर सिर्फ एक बात लागू होती है: कमीशन तभी मिलता है जब असली sale हो — daily payout नहीं।</p>
+    </div>
+    <div class="products" id="product-grid"></div>
+  </div>
+
+  <div class="panel" id="referral">
+    <div class="section-head">
+      <h2>Referral Program</h2>
+      <p>दोस्तों को refer करें, उनकी खरीदारी पर कमाएं।</p>
+    </div>
+    <div class="referral-card">
+      <h2>अपना referral link शेयर करें</h2>
+      <p>जब कोई आपके link से आकर कोई प्रोडक्ट खरीदता है, तो आपको उस sale की value पर कमीशन मिलता है — एक बार, उसी खरीदारी पर।</p>
+      <div class="stat"><b>10%</b><span>referred sale की value पर, एक बार, purchase पूरा होने पर</span></div>
+      <div class="link-box">
+        <code>suryadigitalstore.in/r/YOUR-CODE</code>
+        <button class="copy-btn" onclick="copyLink(this)">Copy</button>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>यह ध्यान रखें</strong>
+      सिर्फ किसी को sign-up कराने, नया member जोड़ने या उसे आगे refer करने पर कोई commission नहीं मिलता — सिर्फ actual completed purchase पर। कोई daily या recurring guaranteed payout नहीं है।
+    </div>
+  </div>
+
+  <div class="panel" id="wallet">
+    <div class="section-head">
+      <h2>Wallet</h2>
+      <p>आपकी कमाई, purchases और withdrawals — एक जगह।</p>
+    </div>
+    <div class="wallet-grid">
+      <div class="wallet-card"><div class="label">कुल Products बिके</div><div class="value">7</div></div>
+      <div class="wallet-card"><div class="label">कुल कमाई</div><div class="value gold">₹1,250</div></div>
+      <div class="wallet-card"><div class="label">निकाला गया</div><div class="value">₹800</div></div>
+      <div class="wallet-card"><div class="label">Available Balance</div><div class="value">₹450</div></div>
+    </div>
+    <div class="wallet-actions">
+      <button class="btn" onclick="openWithdraw()">Withdraw करें</button>
+      <button class="btn-outline" onclick="openSupport()">सहायता चाहिए</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th>तारीख</th><th>Product</th><th>कमीशन</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>18 Sep 2026</td><td>Solar Setup Toolkit</td><td>₹100</td><td><span class="status done">Paid</span></td></tr>
+        <tr><td>15 Sep 2026</td><td>Solar Basics Guide</td><td>₹50</td><td><span class="status done">Paid</span></td></tr>
+        <tr><td>12 Sep 2026</td><td>Referral — Panel Care Guide</td><td>₹150</td><td><span class="status pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    <div class="disclaimer">
+      <strong>Demo डेटा</strong>
+      यह sample earnings और transactions हैं ताकि app का structure दिख सके। Real launch पर इसे अपने actual backend/payment system से जोड़ना होगा।
+    </div>
+  </div>
+
+</div>
+
+<div class="overlay" id="support-overlay">
+  <div class="modal">
+    <h3>सहायता चाहिए?</h3>
+    <p>अपना सवाल लिखें, हमारी team जल्द जवाब देगी।</p>
+    <input type="text" placeholder="आपका नाम">
+    <input type="text" placeholder="Email या Phone">
+    <textarea rows="3" placeholder="आपका सवाल..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeOverlay('support-overlay')">Cancel</button>
+      <button class="btn" onclick="closeOverlay('support-overlay')">भेजें</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="withdraw-overlay">
+  <div class="modal">
+    <h3>Withdraw करें</h3>
+    <p>Available balance: ₹450</p>
+    <input type="number" placeholder="राशि (₹)">
+    <input type="text" placeholder="Bank Account / UPI ID">
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeOverlay('withdraw-overlay')">Cancel</button>
+      <button class="btn" onclick="closeOverlay('withdraw-overlay')">Request भेजें</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  var products = [
+    { tag:"Starter", name:"Solar Basics Guide", price:499, commission:50 },
+    { tag:"Popular", name:"Solar Setup Toolkit", price:999, commission:100 },
+    { tag:"", name:"Panel Care Guide", price:1499, commission:150 },
+    { tag:"", name:"Battery Storage Basics", price:1999, commission:200 },
+    { tag:"", name:"Home Load Calculator Kit", price:2499, commission:250 },
+    { tag:"", name:"Subsidy Application Guide", price:2999, commission:300 },
+    { tag:"", name:"Solar ROI Planner", price:3999, commission:400 },
+    { tag:"", name:"Installer Checklist Pack", price:4999, commission:500 },
+    { tag:"", name:"Maintenance Masterclass", price:5999, commission:600 },
+    { tag:"", name:"Complete Solar Business Kit", price:7999, commission:800 }
+  ];
+
+  var grid = document.getElementById('product-grid');
+  products.forEach(function(p){
+    var el = document.createElement('div');
+    el.className = 'product';
+    el.innerHTML =
+      (p.tag ? '<span class="tag">'+p.tag+'</span>' : '') +
+      '<h3>'+p.name+'</h3>' +
+      '<div class="price">₹'+p.price.toLocaleString('en-IN')+'</div>' +
+      '<div class="commission">बिकने पर कमीशन: <strong>₹'+p.commission+'</strong> (one-time, per sale)</div>' +
+      '<a class="buy" href="#">Link शेयर करें</a>';
+    grid.appendChild(el);
+  });
+
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  function openSupport(){ document.getElementById('support-overlay').classList.add('open'); }
+  function openWithdraw(){ document.getElementById('withdraw-overlay').classList.add('open'); }
+  function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
+
+  function copyLink(btn){
+    var text = document.querySelector('.link-box code').textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1500);
+      }).catch(function(){});
+    }
+  }
+</script>
+
+</body>
+</html>
