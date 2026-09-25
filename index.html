@@ -95,6 +95,7 @@ button{
   padding:7px 13px;
   border-radius:20px;
   font-size:13px;
+  text-decoration:none;
 }
 
 .tabs{
@@ -666,39 +667,38 @@ tr:last-child td{
     </div>
 
     <a
-  class="support-btn"
-  href="https://t.me/indwalletagent"
-  target="_blank"
-  rel="noopener">
-  सहायता
-</a>
-
+      class="support-btn"
+      href="https://t.me/indwalletagent"
+      target="_blank"
+      rel="noopener">
+      Support
+    </a>
 
   </div>
 
-  <div class="wrap tabs">
+  <div class="tabs">
 
     <button
       class="tab active"
-      data-panel="company">
+      data-panel="company-panel">
       Company
     </button>
 
     <button
       class="tab"
-      data-panel="products">
+      data-panel="products-panel">
       Products
     </button>
 
     <button
       class="tab"
-      data-panel="referral">
+      data-panel="referral-panel">
       Referral
     </button>
 
     <button
       class="tab"
-      data-panel="wallet">
+      data-panel="wallet-panel">
       Wallet
     </button>
 
@@ -711,7 +711,9 @@ tr:last-child td{
 
 <!-- ================= COMPANY ================= -->
 
-<div class="panel active" id="company">
+<section
+  class="panel active"
+  id="company-panel">
 
   <div class="hero-mini">
 
@@ -724,10 +726,23 @@ tr:last-child td{
       </h1>
 
       <p>
-        Solar-related digital products बेचने और उनसे कमाने का platform।
+        Digital products, referral income और आसान UPI payment.
       </p>
 
     </div>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>
+      हमारे बारे में
+    </h2>
+
+    <p>
+      Surya Digital Store पर digital guides और business resources उपलब्ध हैं।
+    </p>
 
   </div>
 
@@ -737,12 +752,11 @@ tr:last-child td{
     <div class="info-card">
 
       <h4>
-        हम क्या करते हैं
+        Digital Products
       </h4>
 
       <p>
-        हम digital guides, toolkits और resources बेचते हैं
-        जो solar energy से जुड़ी जानकारी और planning में मदद करते हैं।
+        Solar और business से जुड़े useful digital resources खरीदें।
       </p>
 
     </div>
@@ -751,12 +765,11 @@ tr:last-child td{
     <div class="info-card">
 
       <h4>
-        हमारा तरीका
+        Referral Program
       </h4>
 
       <p>
-        Commission actual completed sale से जुड़ा है।
-        कोई guaranteed daily income नहीं।
+        Referral link share करके eligible commission प्राप्त करें।
       </p>
 
     </div>
@@ -765,25 +778,11 @@ tr:last-child td{
     <div class="info-card">
 
       <h4>
-        Payments
+        UPI Payment
       </h4>
 
       <p>
-        Website पर UPI payment लिया जा सकता है।
-        Payment के बाद UTR submit करना होगा।
-      </p>
-
-    </div>
-
-
-    <div class="info-card">
-
-      <h4>
-        Support
-      </h4>
-
-      <p>
-        किसी सवाल या payment समस्या के लिए support से संपर्क करें।
+        UPI app के माध्यम से payment करें और UTR submit करें।
       </p>
 
     </div>
@@ -795,17 +794,17 @@ tr:last-child td{
 
     <a
       class="btn"
-      href="mailto:support@example.com">
-      ✉️ Email Support
-    </a>
-
-    <a
-      class="btn-outline"
-      href="https://wa.me/910000000000"
+      href="https://t.me/indwalletagent"
       target="_blank"
       rel="noopener">
-      💬 WhatsApp
+      Telegram Support
     </a>
+
+    <button
+      class="btn-outline"
+      onclick="openSupport()">
+      सहायता चाहिए
+    </button>
 
   </div>
 
@@ -813,29 +812,31 @@ tr:last-child td{
   <div class="notice">
 
     <strong>
-      Launch से पहले बदलें
+      Important
     </strong>
 
-    Email, WhatsApp number, company details और UPI ID को अपनी वास्तविक
-    जानकारी से replace करें।
+    Payment submit करने के बाद verification manually किया जा सकता है।
+    Demo version में payment details permanently save नहीं होती हैं।
 
   </div>
 
-</div>
+</section>
 
 
 <!-- ================= PRODUCTS ================= -->
 
-<div class="panel" id="products">
+<section
+  class="panel"
+  id="products-panel">
 
   <div class="section-head">
 
     <h2>
-      Products
+      Digital Products
     </h2>
 
     <p>
-      Product चुनें, UPI से payment करें और payment के बाद UTR submit करें।
+      अपनी जरूरत के अनुसार product चुनें और UPI से payment करें।
     </p>
 
   </div>
@@ -846,58 +847,34 @@ tr:last-child td{
     id="product-grid">
   </div>
 
-
-  <div class="notice">
-
-    <strong>
-      Payment verification
-    </strong>
-
-    UTR submit करने के बाद payment को manually verify किया जाएगा।
-    Verification से पहले order को paid न मानें।
-
-  </div>
-
-</div>
+</section>
 
 
 <!-- ================= REFERRAL ================= -->
 
-<div class="panel" id="referral">
+<section
+  class="panel"
+  id="referral-panel">
 
-  <div class="section-head">
+  <div class="referral-card">
 
     <h2>
       Referral Program
     </h2>
 
     <p>
-      अपने referral link से customers ला सकते हैं।
-    </p>
-
-  </div>
-
-
-  <div class="referral-card">
-
-    <h2>
-      अपना referral link शेयर करें
-    </h2>
-
-    <p>
-      जब कोई आपके referral link से आकर actual product purchase करता है,
-      तो applicable commission मिल सकता है।
+      अपना referral link share करें और eligible sales पर commission प्राप्त करें।
     </p>
 
 
     <div class="stat">
 
       <b>
-        10%
+        ₹800
       </b>
 
       <span>
-        referred sale पर
+        तक commission/day
       </span>
 
     </div>
@@ -906,7 +883,7 @@ tr:last-child td{
     <div class="link-box">
 
       <code id="referral-link">
-        suryadigitalstore.in/r/YOUR-CODE
+        https://suryadigitalpannel.github.io/SuryaDigital/?ref=YOURID
       </code>
 
       <button
@@ -919,33 +896,23 @@ tr:last-child td{
 
   </div>
 
-
-  <div class="notice">
-
-    <strong>
-      Important
-    </strong>
-
-    Commission केवल actual completed purchase से जुड़ा होना चाहिए।
-    अपनी वास्तविक referral terms और conditions यहां रखें।
-
-  </div>
-
-</div>
+</section>
 
 
 <!-- ================= WALLET ================= -->
 
-<div class="panel" id="wallet">
+<section
+  class="panel"
+  id="wallet-panel">
 
   <div class="section-head">
 
     <h2>
-      Wallet
+      My Wallet
     </h2>
 
     <p>
-      आपकी demo earnings और transaction history।
+      अपनी earnings और withdrawal information देखें।
     </p>
 
   </div>
@@ -956,11 +923,11 @@ tr:last-child td{
     <div class="wallet-card">
 
       <div class="label">
-        कुल Products बिके
+        Available Balance
       </div>
 
-      <div class="value">
-        7
+      <div class="value gold">
+        ₹450
       </div>
 
     </div>
@@ -969,10 +936,10 @@ tr:last-child td{
     <div class="wallet-card">
 
       <div class="label">
-        कुल कमाई
+        Total Earnings
       </div>
 
-      <div class="value gold">
+      <div class="value">
         ₹1,250
       </div>
 
@@ -982,24 +949,11 @@ tr:last-child td{
     <div class="wallet-card">
 
       <div class="label">
-        निकाला गया
+        Total Withdrawn
       </div>
 
       <div class="value">
         ₹800
-      </div>
-
-    </div>
-
-
-    <div class="wallet-card">
-
-      <div class="label">
-        Available Balance
-      </div>
-
-      <div class="value">
-        ₹450
       </div>
 
     </div>
@@ -1010,9 +964,9 @@ tr:last-child td{
   <div class="wallet-actions">
 
     <button
-      class="btn"
+      class="btn btn-gold"
       onclick="openWithdraw()">
-      Withdraw करें
+      Withdraw
     </button>
 
     <button
@@ -1024,6 +978,11 @@ tr:last-child td{
   </div>
 
 
+  <h3>
+    Transaction History
+  </h3>
+
+
   <div class="table-wrap">
 
     <table>
@@ -1031,15 +990,52 @@ tr:last-child td{
       <thead>
 
         <tr>
-          <th>तारीख</th>
-          <th>Product</th>
-          <th>कमीशन</th>
-          <th>Status</th>
+
+          <th>
+            Date
+          </th>
+
+          <th>
+            Type
+          </th>
+
+          <th>
+            Amount
+          </th>
+
+          <th>
+            Status
+          </th>
+
         </tr>
 
       </thead>
 
+
       <tbody>
+
+        <tr>
+
+          <td>
+            20 Sep 2026
+          </td>
+
+          <td>
+            Commission
+          </td>
+
+          <td>
+            ₹250
+          </td>
+
+          <td>
+            <span class="status done">
+              Completed
+            </span>
+          </td>
+
+        </tr>
+
 
         <tr>
 
@@ -1048,16 +1044,16 @@ tr:last-child td{
           </td>
 
           <td>
-            Solar Setup Toolkit
+            Commission
           </td>
 
           <td>
-            ₹100
+            ₹200
           </td>
 
           <td>
             <span class="status done">
-              Paid
+              Completed
             </span>
           </td>
 
@@ -1071,16 +1067,16 @@ tr:last-child td{
           </td>
 
           <td>
-            Solar Basics Guide
+            Withdrawal
           </td>
 
           <td>
-            ₹50
+            ₹500
           </td>
 
           <td>
             <span class="status done">
-              Paid
+              Completed
             </span>
           </td>
 
@@ -1094,11 +1090,11 @@ tr:last-child td{
           </td>
 
           <td>
-            Panel Care Guide
+            Commission
           </td>
 
           <td>
-            ₹150
+            ₹100
           </td>
 
           <td>
@@ -1115,7 +1111,7 @@ tr:last-child td{
 
   </div>
 
-</div>
+</section>
 
 </div>
 
@@ -1129,30 +1125,32 @@ tr:last-child td{
   <div class="modal">
 
     <h3 id="payment-title">
-      UPI Payment
+      Payment
     </h3>
 
     <p id="payment-amount">
-      Payable Amount
+      Payable Amount: ₹0
     </p>
 
 
     <div class="upi-box">
 
       <small>
-        Payment UPI ID
+        UPI ID
       </small>
 
       <strong id="upi-id">
-        YOUR_UPI_ID@upi
+        -
       </strong>
 
     </div>
 
 
     <div class="qr-placeholder">
+
       QR Code<br>
       यहाँ आपका UPI QR लगाया जा सकता है
+
     </div>
 
 
@@ -1347,21 +1345,7 @@ tr:last-child td{
    IMPORTANT SETTINGS
    ===================================================== */
 
-/*
-  अपनी असली UPI ID यहां डालें.
-
-  Example:
-  yourname@oksbi
-  yourname@paytm
-  yourname@ybl
-*/
-
-const MY_UPI_ID = 8795144458@mbk;
-
-
-/*
-  अपना store name
-*/
+const MY_UPI_ID = "8795144458@mbk";
 
 const STORE_NAME = "Surya Digital Store";
 
@@ -1376,70 +1360,70 @@ const products = [
     tag:"Starter",
     name:"Solar Basics Guide",
     price:499,
-    commission:50 per day
+    commission:50
   },
 
   {
     tag:"Popular",
     name:"Solar Setup Toolkit",
     price:999,
-    commission:100 per day
+    commission:100
   },
 
   {
     tag:"",
     name:"Panel Care Guide",
     price:1499,
-    commission:150 per day
+    commission:150
   },
 
   {
     tag:"",
     name:"Battery Storage Basics",
     price:1999,
-    commission:200 per day
+    commission:200
   },
 
   {
     tag:"",
     name:"Home Load Calculator Kit",
     price:2499,
-    commission:250 per day
+    commission:250
   },
 
   {
     tag:"",
     name:"Subsidy Application Guide",
     price:2999,
-    commission:300 per day
+    commission:300
   },
 
   {
     tag:"",
     name:"Solar ROI Planner",
     price:3999,
-    commission:400 per day
+    commission:400
   },
 
   {
     tag:"",
     name:"Installer Checklist Pack",
     price:4999,
-    commission:500 per day
+    commission:500
   },
 
   {
     tag:"",
     name:"Maintenance Masterclass",
     price:5999,
-    commission:600 per day
+    commission:600
   },
 
   {
     tag:"",
     name:"Complete Solar Business Kit",
     price:7999,
-    commission:800 per day
+    commission:800
   }
 
 ];
@@ -1480,7 +1464,7 @@ products.forEach(function(product){
     <div class="commission">
       बिक्री पर कमीशन:
       <strong>
-        ₹${product.commission}
+        ₹${product.commission}/day
       </strong>
     </div>
 
@@ -1529,10 +1513,6 @@ function openPayment(amount,productName){
     .textContent =
       MY_UPI_ID;
 
-
-  /*
-    UPI DEEP LINK
-  */
 
   const upiURL =
 
@@ -1633,13 +1613,6 @@ function submitPayment(){
 
   }
 
-
-  /*
-    अभी Firebase नहीं लगा है.
-
-    इसलिए फिलहाल सिर्फ confirmation
-    दिखाया जा रहा है.
-  */
 
   alert(
 
